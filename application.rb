@@ -11,7 +11,13 @@ class Application < Sinatra::Application
   end
 
   get '/' do
-    erb :index
+    messages = @database_connection.sql("SELECT * FROM messages")
+    erb :index, locals: {messages: messages}
+  end
+
+  post "/" do
+    @database_connection.sql("insert into messages (users, messages) values ('#{params[:name]}','#{params[:message]}')")
+    redirect "/"
   end
 
   get '/continents' do

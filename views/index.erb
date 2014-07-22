@@ -2,3 +2,18 @@
 
 <p>We show totally accurate lists of continents and countries!!</p>
 
+<form method="post" action="/">
+  <label for="name">Name:</label>
+  <input id='name' name="name">
+  <label for="message">Message:</label>
+  <input id="message" name="message">
+  <button type="submit">Add Message</button>
+</form>
+<ul>
+  <% messages.each do |message| %>
+    <li><%= message["messages"] %> - <%= message["users"] %></li>
+
+  <% end %>
+</ul>
+
+<%= messages %>
